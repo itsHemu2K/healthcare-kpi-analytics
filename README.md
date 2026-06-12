@@ -1,6 +1,8 @@
 # Healthcare KPI Analytics Dashboard
 
-Python and SQL analytics project for monitoring operational healthcare KPIs using synthetic data. The project demonstrates data extraction, cleansing, KPI calculation, trend analysis, and dashboard development.
+Python and SQL portfolio project for monitoring operational healthcare KPIs using synthetic data. The project demonstrates data generation, data cleansing, KPI calculation, SQL reporting, trend analysis, validation, and dashboard development.
+
+This repository is intentionally built with synthetic data for public portfolio use. It does not contain employer data, protected health information, or proprietary claims extracts.
 
 ## Highlights
 
@@ -8,10 +10,11 @@ Python and SQL analytics project for monitoring operational healthcare KPIs usin
 - Calculates reporting KPIs including appointment volume, average wait time, readmission rate, claim denial rate, and patient satisfaction.
 - Includes SQL queries for business reporting and operational analysis.
 - Provides a Streamlit dashboard for interactive KPI monitoring and trend exploration.
+- Includes tests for the metric-building logic.
 
 ## Tech Stack
 
-Python, SQL, Pandas, Plotly, Streamlit
+Python, SQL, Pandas, Plotly, Streamlit, Pytest
 
 ## Project Structure
 
@@ -64,5 +67,5 @@ pytest
 
 ## Data Note
 
-All data in this repository is synthetic and intended for portfolio and demonstration use only.
+All data in this repository is synthetic and intended for portfolio and demonstration use only. The project is designed to show the structure of a healthcare analytics workflow without exposing confidential or regulated data.
 
