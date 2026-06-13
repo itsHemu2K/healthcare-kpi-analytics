@@ -1,6 +1,7 @@
 import pandas as pd
+import pytest
 
-from src.build_metrics import calculate_kpis, department_summary, monthly_trends
+from src.build_metrics import calculate_kpis, department_summary, load_data, monthly_trends
 
 
 def sample_data():
@@ -30,6 +31,18 @@ def test_calculate_kpis():
     assert kpis["average_satisfaction"] == 3.5
 
 
+def test_calculate_kpis_empty_data():
+    kpis = calculate_kpis(sample_data().iloc[0:0])
+
+    assert kpis == {
+        "appointment_volume": 0,
+        "average_wait_time": 0.0,
+        "readmission_rate": 0.0,
+        "claim_denial_rate": 0.0,
+        "average_satisfaction": 0.0,
+    }
+
+
 def test_monthly_trends():
     trends = monthly_trends(sample_data())
 
@@ -42,4 +55,12 @@ def test_department_summary():
 
     assert set(summary["department"]) == {"Primary Care", "Cardiology"}
     assert summary["total_claim_amount"].sum() == 1000.0
+
+
+def test_load_data_requires_expected_columns(tmp_path):
+    bad_file = tmp_path / "bad.csv"
+    sample_data().drop(columns=["claim_status"]).to_csv(bad_file, index=False)
+
+    with pytest.raises(ValueError, match="Missing required columns"):
+        load_data(bad_file)
 
